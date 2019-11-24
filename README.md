@@ -1,7 +1,7 @@
 # WumpusWorld (Work in Progress)
 Wumpus World is a round based Text Adventure, in which you try to find and hunt a wumpus in a dungeon. 
 The Game Logic:
-For better understanding of how the game works, I printed it and it can look like this:
+For a better understanding of how the game works, I printed it and it can look like this:
 <pre>
 .HH.
 ....
