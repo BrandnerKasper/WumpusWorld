@@ -16,3 +16,5 @@ For further information on the game visit:
 <url>
 https://en.wikipedia.org/wiki/Hunt_the_Wumpus
 </url>
+
+This version of the game is not yet fully implemented!
