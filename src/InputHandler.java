@@ -25,33 +25,38 @@ public class InputHandler {
     private void movePlayer(Direction direction){
         switch (direction){
             case UP:
-                movePlayerUP();
+                player.moveUp();
                 break;
             case DOWN:
-                movePlayerDown();
+                player.moveDown();
                 break;
             case LEFT:
-                movePlayerLeft();
+                player.moveLeft();
                 break;
             case RIGHT:
-                movePlayerRight();
+                player.moveRight();
                 break;
             case NONE:
                 System.out.println("You went nowhere");
         }
     }
 
-    //better in player class
-    private void movePlayerUP(){
-        player.setPlayerPosition(new RoomPosition(player.getPlayerPosition().getX()+1, player.getPlayerPosition().getY()));
-    }
-    private void movePlayerDown(){
-        player.setPlayerPosition(new RoomPosition(player.getPlayerPosition().getX()-1, player.getPlayerPosition().getY()));
-    }
-    private void movePlayerLeft(){
-        player.setPlayerPosition(new RoomPosition(player.getPlayerPosition().getX(), player.getPlayerPosition().getY()-1));
-    }
-    private void movePlayerRight(){
-        player.setPlayerPosition(new RoomPosition(player.getPlayerPosition().getX(), player.getPlayerPosition().getY()+1));
+    private void playerShoot(Direction direction){
+        switch (direction){
+            case UP:
+                player.shootUp();
+                break;
+            case DOWN:
+                player.shootDown();
+                break;
+            case LEFT:
+                player.shootLeft();
+                break;
+            case RIGHT:
+                player.shootRight();
+                break;
+            case NONE:
+                System.out.println("You shot nowhere");
+        }
     }
 }

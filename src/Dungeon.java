@@ -9,7 +9,8 @@ public class Dungeon {
     private int roomNumber = height*width;
     private int holeNumber = height-1;
 
-    private List<Room> roomList = new ArrayList<>(height*width);
+    //lets Think about that
+    public List<Room> roomList = new ArrayList<>(height*width);
 
     public Dungeon() {
         initDungeon(height,width);
@@ -23,7 +24,7 @@ public class Dungeon {
     private void initDungeon(int height, int width){
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Room room = new Room(".", new RoomPosition(j, i));
+                Room room = new Room(".", new Position(j, i));
                 roomList.add(room);
             }
         }
@@ -91,7 +92,7 @@ public class Dungeon {
         return roomList.get(roomNumber).getContent().equals(".");
     }
 
-    public Room getRoomAtPosition(RoomPosition position){
+    public Room getRoomAtPosition(Position position){
         for (Room room : roomList){
             if (room.getPosition().equals(position)){
                 return room;
@@ -107,7 +108,7 @@ public class Dungeon {
         StringBuilder dungeonString = new StringBuilder();
         for (int i = height-1; i >=0; i--) {
             for (int j = 0; j < width; j++) {
-                Room room = getRoomAtPosition(new RoomPosition(j, i));
+                Room room = getRoomAtPosition(new Position(j, i));
                 dungeonString.append(room.getContent());
             }
             dungeonString.append("\n");
