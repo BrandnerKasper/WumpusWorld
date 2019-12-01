@@ -2,9 +2,6 @@ class Position{
     private final int x;
     private final int y;
 
-    //not best solution!
-    private Dungeon dungeon;
-
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
@@ -19,10 +16,19 @@ class Position{
     }
 
     public boolean isPositionValid(Position position){
-        for (Room room : dungeon.roomList){
+        for (Room room : Dungeon.roomList){
             if (room.getPosition().equals(position)){return true;}
         }
         return false;
+    }
+
+    /**
+     * Returns True if the room your aiming on is the Wumpus Chamber
+     * @param position
+     * @return boolean
+     */
+    public boolean isWumpusShot(Position position){
+        return Dungeon.getRoomAtPosition(position).isWumpus();
     }
 
     @Override

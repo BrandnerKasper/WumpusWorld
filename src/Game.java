@@ -1,9 +1,8 @@
 public class Game {
 
     private Scoresystem scoresystem;
-    private boolean gameIsOver = false;
+    private static boolean gameIsOver = false;
     private Dungeon dungeon;
-    private Player player = new Player();
     private InputHandler inputHandler;
 
     public Game() {
@@ -22,7 +21,7 @@ public class Game {
     }
 
     private void getUpdate(){
-        Room currentRoom = dungeon.getRoomAtPosition(player.getPlayerPosition());
+        Room currentRoom = Dungeon.getRoomAtPosition(Player.getPlayerPosition());
         if (currentRoom.isWumpus()){gameIsOver=true;}
         if (currentRoom.isHole()){gameIsOver=true;}
         if (currentRoom.isTreasure()){
@@ -31,5 +30,9 @@ public class Game {
         }
         String updateString = "In the place you are it is: \n Breezy: " + currentRoom.isHoleNear() + "\n Stinky: " + currentRoom.isWumpusNear();
         System.out.println(updateString);
+    }
+
+    public static void setGameIsOver(){
+        gameIsOver = true;
     }
 }

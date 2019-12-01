@@ -3,14 +3,14 @@ import java.util.List;
 
 public class Dungeon {
 
-    private int height = 4;
-    private int width = 4;
+    private static int height = 4;
+    private static int width = 4;
 
-    private int roomNumber = height*width;
-    private int holeNumber = height-1;
+    private static int roomNumber = height*width;
+    private static int holeNumber = height-1;
 
-    //lets Think about that
-    public List<Room> roomList = new ArrayList<>(height*width);
+    //lets Think about that (final?)
+    public static List<Room> roomList = new ArrayList<>(height*width);
 
     public Dungeon() {
         initDungeon(height,width);
@@ -92,7 +92,7 @@ public class Dungeon {
         return roomList.get(roomNumber).getContent().equals(".");
     }
 
-    public Room getRoomAtPosition(Position position){
+    public static Room getRoomAtPosition(Position position){
         for (Room room : roomList){
             if (room.getPosition().equals(position)){
                 return room;

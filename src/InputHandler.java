@@ -8,10 +8,6 @@ public class InputHandler {
         NONE
     }
 
-    //better somewhere else!
-    private Player player;
-
-
     public void handleInput(){
         /**
          * handle keyboard Input
@@ -25,16 +21,16 @@ public class InputHandler {
     private void movePlayer(Direction direction){
         switch (direction){
             case UP:
-                player.moveUp();
+                Player.moveUp();
                 break;
             case DOWN:
-                player.moveDown();
+                Player.moveDown();
                 break;
             case LEFT:
-                player.moveLeft();
+                Player.moveLeft();
                 break;
             case RIGHT:
-                player.moveRight();
+                Player.moveRight();
                 break;
             case NONE:
                 System.out.println("You went nowhere");
@@ -44,16 +40,16 @@ public class InputHandler {
     private void playerShoot(Direction direction){
         switch (direction){
             case UP:
-                player.shootUp();
+                Player.shootUp();
                 break;
             case DOWN:
-                player.shootDown();
+                Player.shootDown();
                 break;
             case LEFT:
-                player.shootLeft();
+                Player.shootLeft();
                 break;
             case RIGHT:
-                player.shootRight();
+                Player.shootRight();
                 break;
             case NONE:
                 System.out.println("You shot nowhere");

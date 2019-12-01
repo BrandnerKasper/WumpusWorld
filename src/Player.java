@@ -1,24 +1,19 @@
 public class Player {
-    private Position position;
-    private int shootCounter;
+    private static Position position = new Position(0,0);
 
-    public Player() {
-        position = new Position(0,0);
-    }
-
-    public Position getPlayerPosition() {
+    public static Position getPlayerPosition() {
         return position;
     }
 
-    public void setPlayerPosition(Position position) {
-        this.position = position;
+    public static void setPlayerPosition(Position position) {
+        Player.position = position;
     }
 
-
     /**
-     * Player moves in every direction
+     * Player can moves in every direction
+     * We need to check if position we`re moving him is valid
      */
-    public void moveUp(){
+    public static void moveUp(){
         Position newPlayerPosition = new Position(getPlayerPosition().getX(),getPlayerPosition().getY()+1);
         if (position.isPositionValid(newPlayerPosition))
             {setPlayerPosition(newPlayerPosition);}
@@ -27,7 +22,7 @@ public class Player {
         }
     }
 
-    public void moveDown(){
+    public static void moveDown(){
         Position newPlayerPosition = new Position(getPlayerPosition().getX(),getPlayerPosition().getY()-1);
         if (position.isPositionValid(newPlayerPosition))
             {setPlayerPosition(newPlayerPosition);}
@@ -36,7 +31,7 @@ public class Player {
         }
     }
 
-    public void moveRight(){
+    public static void moveRight(){
         Position newPlayerPosition = new Position(getPlayerPosition().getX()+1,getPlayerPosition().getY());
         if (position.isPositionValid(newPlayerPosition))
             {setPlayerPosition(newPlayerPosition);}
@@ -45,7 +40,7 @@ public class Player {
         }
     }
 
-    public void moveLeft(){
+    public static void moveLeft(){
         Position newPlayerPosition = new Position(getPlayerPosition().getX()-1,getPlayerPosition().getY());
         if (position.isPositionValid(newPlayerPosition))
             {setPlayerPosition(newPlayerPosition);}
@@ -54,20 +49,70 @@ public class Player {
         }
     }
 
-    public void shootUp(){
+    /**
+     * Player can shoot in every Direction
+     * 1. We check if Position we`re aiming at is valid
+     * 2. We check if Room on that Position contains the Wumpus
+     */
 
+    public static void shootUp(){
+        Position shootPosition = new Position(getPlayerPosition().getX(),getPlayerPosition().getY()+1);
+        if (position.isPositionValid(shootPosition)){
+            if (position.isWumpusShot(shootPosition)){
+                System.out.println("Wow! The beast is slain you can flee this terrible place!");
+                //add Score!
+            }else{
+                System.out.println("Shooooott! You messed up, that was the wrong room! " +
+                        "Oh no... something is following the noice right to your spot...");
+                //subtract Score!
+            }
+            Game.setGameIsOver();
+        }
     }
 
-    public void shootDown(){
-
+    public static void shootDown(){
+        Position shootPosition = new Position(getPlayerPosition().getX(),getPlayerPosition().getY()-1);
+        if (position.isPositionValid(shootPosition)){
+            if (position.isWumpusShot(shootPosition)){
+                System.out.println("Wow! The beast is slain you can flee this terrible place!");
+                //add Score!
+            }else{
+                System.out.println("Shooooott! You messed up, that was the wrong room! " +
+                        "Oh no... something is following the noice right to your spot...");
+                //subtract Score!
+            }
+            Game.setGameIsOver();
+        }
     }
 
-    public void shootLeft(){
-
+    public static void shootLeft(){
+        Position shootPosition = new Position(getPlayerPosition().getX()-1,getPlayerPosition().getY());
+        if (position.isPositionValid(shootPosition)){
+            if (position.isWumpusShot(shootPosition)){
+                System.out.println("Wow! The beast is slain you can flee this terrible place!");
+                //add Score!
+            }else{
+                System.out.println("Shooooott! You messed up, that was the wrong room! " +
+                        "Oh no... something is following the noice right to your spot...");
+                //subtract Score!
+            }
+            Game.setGameIsOver();
+        }
     }
 
-    public void shootRight(){
-
+    public static void shootRight(){
+        Position shootPosition = new Position(getPlayerPosition().getX()+1,getPlayerPosition().getY());
+        if (position.isPositionValid(shootPosition)){
+            if (position.isWumpusShot(shootPosition)){
+                System.out.println("Wow! The beast is slain you can flee this terrible place!");
+                //add Score!
+            }else{
+                System.out.println("Shooooott! You messed up, that was the wrong room! " +
+                        "Oh no... something is following the noice right to your spot...");
+                //subtract Score!
+            }
+            Game.setGameIsOver();
+        }
     }
 
 }
