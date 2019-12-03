@@ -8,29 +8,45 @@ public class InputHandler {
         NONE
     }
 
+    private Player player = Player.getInstance();
+    private static InputHandler inputHandler = new InputHandler();
+
+    private InputHandler(){}
+
+    public static InputHandler getInstance(){
+        return inputHandler;
+    }
+
+    /**
+     * handle keyboard Input:
+     * Player movement:
+     * - W for UP
+     * - S for DOWN
+     * - A for LEFT
+     * - D for RIGHT
+     * Player shoot mechanic:
+     * - I for UP
+     * - K for DOWN
+     * - J for LEFT
+     * - L for Right
+     */
     public void handleInput(){
-        /**
-         * handle keyboard Input
-         * W for UP
-         * S for DOWN
-         * A for LEFT
-         * D for RIGHT
-         */
+        movePlayer(Direction.UP);
     }
 
     private void movePlayer(Direction direction){
         switch (direction){
             case UP:
-                Player.moveUp();
+                player.moveUp();
                 break;
             case DOWN:
-                Player.moveDown();
+                player.moveDown();
                 break;
             case LEFT:
-                Player.moveLeft();
+                player.moveLeft();
                 break;
             case RIGHT:
-                Player.moveRight();
+                player.moveRight();
                 break;
             case NONE:
                 System.out.println("You went nowhere");
@@ -40,16 +56,16 @@ public class InputHandler {
     private void playerShoot(Direction direction){
         switch (direction){
             case UP:
-                Player.shootUp();
+                player.shootUp();
                 break;
             case DOWN:
-                Player.shootDown();
+                player.shootDown();
                 break;
             case LEFT:
-                Player.shootLeft();
+                player.shootLeft();
                 break;
             case RIGHT:
-                Player.shootRight();
+                player.shootRight();
                 break;
             case NONE:
                 System.out.println("You shot nowhere");

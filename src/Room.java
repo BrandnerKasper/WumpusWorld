@@ -2,15 +2,17 @@ public class Room {
 
     private String content;
     private Position position;
+    private int ID;
     private boolean isWumpus = false;
     private boolean isWumpusNear = false;
     private boolean isHole = false;
     private boolean isHoleNear = false;
     private boolean isTreasure = false;
 
-    public Room(String content, Position position) {
+    public Room(String content, Position position, int ID) {
         this.content = content;
         this.position = position;
+        this.ID = ID;
     }
 
 
@@ -18,6 +20,8 @@ public class Room {
     public void setContent(String content) {this.content = content;}
 
     public Position getPosition(){return position;}
+
+    public int getID() {return ID;}
 
     public boolean isWumpus() {return isWumpus;}
     public void setWumpus(boolean wumpus) {isWumpus = wumpus;}

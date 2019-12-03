@@ -2,6 +2,8 @@ class Position{
     private final int x;
     private final int y;
 
+    private Dungeon dungeon = Dungeon.getInstance();
+
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
@@ -16,7 +18,7 @@ class Position{
     }
 
     public boolean isPositionValid(Position position){
-        for (Room room : Dungeon.roomList){
+        for (Room room : dungeon.roomList){
             if (room.getPosition().equals(position)){return true;}
         }
         return false;
@@ -28,7 +30,7 @@ class Position{
      * @return boolean
      */
     public boolean isWumpusShot(Position position){
-        return Dungeon.getRoomAtPosition(position).isWumpus();
+        return dungeon.getRoomAtPosition(position).isWumpus();
     }
 
     @Override

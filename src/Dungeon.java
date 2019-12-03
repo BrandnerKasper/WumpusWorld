@@ -5,14 +5,17 @@ public class Dungeon {
 
     private static int height = 4;
     private static int width = 4;
+    private static int roomID = 0;
 
     private static int roomNumber = height*width;
     private static int holeNumber = height-1;
 
-    //lets Think about that (final?)
-    public static List<Room> roomList = new ArrayList<>(height*width);
+    //maybe make private!
+    public List<Room> roomList = new ArrayList<>(height*width);
 
-    public Dungeon() {
+    private static Dungeon dungeon = new Dungeon();
+
+    private Dungeon() {
         initDungeon(height,width);
         setPlayerStart();
         setHoles();
@@ -20,12 +23,17 @@ public class Dungeon {
         setTreasure();
     }
 
+    public static Dungeon getInstance(){
+        return dungeon;
+    }
+
 
     private void initDungeon(int height, int width){
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Room room = new Room(".", new Position(j, i));
+                Room room = new Room(".", new Position(j, i), roomID);
                 roomList.add(room);
+                roomID++;
             }
         }
     }
@@ -40,7 +48,7 @@ public class Dungeon {
             if (isRoomEmpty(randomRoomNumber)){
                 roomList.get(randomRoomNumber).setContent("H");
                 roomList.get(randomRoomNumber).setHole(true);
-                //makeRoomsAroundBreezy(randomRoomNumber);
+                makeRoomsAroundBreezy(randomRoomNumber);
             }else {
                 i--;
             }
@@ -48,11 +56,10 @@ public class Dungeon {
     }
 
     private void makeRoomsAroundBreezy(int roomNumber){
-        //! Array out of bounds can happen! FIX
-        roomList.get(roomNumber+1).setHoleNear(true);
-        roomList.get(roomNumber-1).setHoleNear(true);
-        roomList.get(roomNumber+width).setHoleNear(true);
-        roomList.get(roomNumber-width).setHoleNear(true);
+        if (isRoomNumberValid(roomNumber+1)){roomList.get(roomNumber+1).setHoleNear(true);}
+        if (isRoomNumberValid(roomNumber-1)){roomList.get(roomNumber-1).setHoleNear(true);}
+        if (isRoomNumberValid(roomNumber+width)){roomList.get(roomNumber+width).setHoleNear(true);}
+        if (isRoomNumberValid(roomNumber-width)){roomList.get(roomNumber-width).setHoleNear(true);}
     }
 
     private void setWumpus(){
@@ -62,18 +69,17 @@ public class Dungeon {
             if (isRoomEmpty(randomRoomNumber)) {
                 roomList.get(randomRoomNumber).setContent("W");
                 roomList.get(randomRoomNumber).setWumpus(true);
-                //makeRoomsAroundStinky(randomRoomNumber);
+                makeRoomsAroundStinky(randomRoomNumber);
                 wumpusIsSet = true;
             }
         }
     }
 
     private void makeRoomsAroundStinky(int roomNumber){
-        //Same FIX like makeRoomsAroundBreezy
-        roomList.get(roomNumber+1).setWumpusNear(true);
-        roomList.get(roomNumber-1).setWumpusNear(true);
-        roomList.get(roomNumber+width).setWumpusNear(true);
-        roomList.get(roomNumber-width).setWumpusNear(true);
+        if (isRoomNumberValid(roomNumber+1)){roomList.get(roomNumber+1).setWumpusNear(true);}
+        if (isRoomNumberValid(roomNumber-1)){roomList.get(roomNumber-1).setWumpusNear(true);}
+        if (isRoomNumberValid(roomNumber+width)){roomList.get(roomNumber+width).setWumpusNear(true);}
+        if (isRoomNumberValid(roomNumber-width)){roomList.get(roomNumber-width).setWumpusNear(true);}
     }
 
     private void setTreasure(){
@@ -92,13 +98,20 @@ public class Dungeon {
         return roomList.get(roomNumber).getContent().equals(".");
     }
 
-    public static Room getRoomAtPosition(Position position){
+    public Room getRoomAtPosition(Position position){
         for (Room room : roomList){
             if (room.getPosition().equals(position)){
                 return room;
             }
         }
         throw new IllegalArgumentException("invalid position");
+    }
+
+    public boolean isRoomNumberValid(int ID){
+        for (Room room : roomList){
+            if (room.getID() == ID){return true;}
+        }
+        return false;
     }
 
     /**
@@ -115,4 +128,5 @@ public class Dungeon {
         }
         System.out.println(dungeonString.toString());
     }
+
 }
