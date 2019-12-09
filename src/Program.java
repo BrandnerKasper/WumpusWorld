@@ -16,7 +16,6 @@ public class Program {
                 "J for LEFT \n" +
                 "L for RIGHT \n");
         Game game = Game.getInstance();
-        game.printTheGame();
         game.gameLoop();
         game.printTheGame();
     }
