@@ -1,3 +1,7 @@
+/**
+ * A Room can contain a Wumpus, a Hole and a Treasure. These are the string contents.
+ * Rooms around a Wumpus or a Hole are breezy resp. stinky. These are the booleans.
+ */
 public class Room {
 
     private String content;
