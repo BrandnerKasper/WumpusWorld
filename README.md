@@ -1,10 +1,11 @@
-# WumpusWorld (Work in Progress)
+# WumpusWorld
 Wumpus World is a round based Text Adventure, in which you try to find and hunt a wumpus in a dungeon. 
 The Game Logic:
 A run of the game can look like this: 
 <pre>
-Welcome to Wumpus World. Strive through the 4 by 4 quadratic dark dungeon and try to find and hunt the Wumpus! 
- You start in the bottom left corner. 
+Welcome to Wumpus World. Strive through the 4 by 4 quadratic dark dungeon
+and try to find and hunt the Wumpus! 
+You start in the bottom left corner. 
 Your Controls are: 
 Move in the Direction: 
 W for UP 
